@@ -52,9 +52,11 @@ static VROVector3f const kZeroVector = VROVector3f();
 
 #pragma mark - Setup
 
+
 VROSceneRendererSceneView::VROSceneRendererSceneView(VRORendererConfiguration config,
                                                      std::shared_ptr<gvr::AudioApi> gvrAudio,
-                                                     jobject viroViewJNI) {
+                                                     jobject viroViewJNI) :
+                                                              _projectionMatrix(VROMatrix4f::identity()) {
 
     _driver = std::make_shared<VRODriverOpenGLAndroid>(gvrAudio);
 
@@ -86,7 +88,8 @@ void VROSceneRendererSceneView::renderFrame() {
 
     VROViewport viewport(0, 0, _surfaceSize.width, _surfaceSize.height);
     VROFieldOfView fov = _renderer->computeUserFieldOfView(viewport.getWidth(), viewport.getHeight());
-    VROMatrix4f projection = fov.toPerspectiveProjection(kZNear, _renderer->getFarClippingPlane());
+    //VROMatrix4f projection = fov.toPerspectiveProjection(kZNear, _renderer->getFarClippingPlane());
+    VROMatrix4f projection = _projectionMatrix.isIdentity() ? fov.toPerspectiveProjection(kZNear, _renderer->getFarClippingPlane()) : _projectionMatrix;
 
     _renderer->prepareFrame(_frame, viewport, fov, VROMatrix4f::identity(), projection, _driver);
     _renderer->renderEye(VROEyeType::Monocular, _renderer->getLookAtMatrix(), projection, viewport, _driver);
@@ -154,4 +157,7 @@ void VROSceneRendererSceneView::setVRModeEnabled(bool enabled) {
 
 }
 
+void VROSceneRendererSceneView::setProjectionMatrix(VROMatrix4f projectionMatrix) {
+    _projectionMatrix = projectionMatrix;
+}
 

@@ -86,11 +86,14 @@ public:
     void onSurfaceChanged(jobject surface, VRO_INT width, VRO_INT height);
     void onSurfaceDestroyed() {}
 
+    void setProjectionMatrix(VROMatrix4f projectionMatrix);
+
 private:
 
     void renderFrame();
 
     gvr::Sizei _surfaceSize;
+    VROMatrix4f _projectionMatrix;
 };
 
 

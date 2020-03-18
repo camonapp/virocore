@@ -141,6 +141,8 @@ public:
     std::vector<VROHitTestResult> performHitTest(int x, int y, bool boundsOnly);
 
     std::vector<VROHitTestResult> performHitTest(VROVector3f origin, VROVector3f ray, bool boundsOnly);
+
+    virtual void setProjectionMatrix(VROMatrix4f projectionMatrix) { };
 protected:
 
     int _frame;

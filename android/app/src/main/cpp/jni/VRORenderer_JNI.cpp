@@ -683,5 +683,32 @@ VRO_METHOD(void, nativePerformHitTestWithRay) (VRO_ARGS
     });
 }
 
+VRO_METHOD(void, nativeSetProjectionMatrix)(VRO_ARGS
+                                      jlong native_renderer,
+                                      VRO_FLOAT_ARRAY matrix) {
+    VRO_FLOAT *matrixArray = VRO_FLOAT_ARRAY_GET_ELEMENTS(matrix);
+
+    float tmpMatrix[16];
+    // TODO: check si como float* no va bien
+    tmpMatrix[0] = matrixArray[0]; tmpMatrix[1] = matrixArray[1]; tmpMatrix[2] = matrixArray[2];
+    tmpMatrix[3] = matrixArray[3]; tmpMatrix[4] = matrixArray[4]; tmpMatrix[5] = matrixArray[5];
+    tmpMatrix[6] = matrixArray[6]; tmpMatrix[7] = matrixArray[7]; tmpMatrix[8] = matrixArray[8];
+    tmpMatrix[9] = matrixArray[9]; tmpMatrix[10] = matrixArray[10]; tmpMatrix[11] = matrixArray[11];
+    tmpMatrix[12] = matrixArray[12]; tmpMatrix[13] = matrixArray[13]; tmpMatrix[14] = matrixArray[14];
+    tmpMatrix[15] = matrixArray[15];
+    VROMatrix4f projectionMatrix(tmpMatrix);
+    VRO_FLOAT_ARRAY_RELEASE_ELEMENTS(matrix, matrixArray);
+
+    std::weak_ptr<VROSceneRenderer> sceneRenderer_w = Renderer::native(native_renderer);
+
+    VROPlatformDispatchAsyncRenderer([sceneRenderer_w, projectionMatrix] {
+        std::shared_ptr<VROSceneRenderer> sceneRenderer = sceneRenderer_w.lock();
+        if (!sceneRenderer) {
+            return;
+        }
+        sceneRenderer->setProjectionMatrix(projectionMatrix);
+    });
+}
+
 
 }  // extern "C"
