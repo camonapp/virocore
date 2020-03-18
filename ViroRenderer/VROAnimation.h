@@ -68,7 +68,7 @@ public:
     /*
      Move the property to its value corresponding to t [0, 1].
      */
-    virtual void processAnimationFrame(float t) = 0;
+    virtual void processAnimationFrame(float t, bool isPing) = 0;
     
     /*
      Immediately finish this animation by moving its value to the

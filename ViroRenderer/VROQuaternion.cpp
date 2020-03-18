@@ -328,12 +328,13 @@ VROQuaternion VROQuaternion::lerp(VROQuaternion q1, VROQuaternion q2, float time
 }
 
 // set this quaternion to the result of the interpolation between two quaternions
+/*
 VROQuaternion VROQuaternion::slerp(VROQuaternion q1, VROQuaternion q2, float time, float threshold) {
     float angle = q1.dotProduct(q2);
     
     // make sure we use the short rotation
     if (angle < 0.0f) {
-        q1 *= -1.0f;
+        q1 *= -1.0f; // W??
         angle *= -1.0f;
     }
     
@@ -347,7 +348,60 @@ VROQuaternion VROQuaternion::slerp(VROQuaternion q1, VROQuaternion q2, float tim
     }
     else // linear interpolation
         return lerp(q1, q2, time);
+}*/
+
+VROQuaternion VROQuaternion::slerp(VROQuaternion q1, VROQuaternion q2, float time, float threshold) {
+    float angle = q1.dotProduct(q2);
+
+    // make sure we use the short rotation
+    if (angle < 0.0f) {
+        q1 *= -1.0f; // W??
+        angle *= -1.0f;
+    }
+
+    const float theta = acosf(angle);
+    const float sintheta = sinf(theta);
+
+    float scale, invscale;
+    if ( sintheta > 0.0001 ) {
+        scale = sinf(theta * (1.0f-time)) / sintheta;
+        invscale = sinf(theta * time) / sintheta;
+    } else {
+        scale = 1.0 - time;
+        invscale = time;
+    }
+
+    return (q1 * scale) + (q2 * invscale);
 }
+
+/*
+static Quaternion< PRECISION > slerp( const Quaternion< PRECISION > &a, const Quaternion< PRECISION > b, double t )
+        {
+            PRECISION cosTheta = a.getReal() * b.getReal() + a.getImaginary() * b.getImaginary();
+            Quaternion< PRECISION > b1 = b;
+            if ( cosTheta < 0.0 ) {
+                b1 = b.getConjugate();
+                cosTheta = -cosTheta;
+            }
+
+            PRECISION w1, w2;
+            PRECISION theta = Numeric< PRECISION >::acos( cosTheta );
+            PRECISION sinTheta = Numeric< PRECISION >::sin( theta );
+
+            if ( sinTheta > 0.0001 ) {
+                w1 = ( PRECISION )( Numeric< PRECISION >::sin( ( 1.0 - t ) * theta ) / sinTheta );
+                w2 = ( PRECISION )( Numeric< PRECISION >::sin( t * theta ) / sinTheta );
+            }
+            else {
+                w1 = 1.0 - t;
+                w2 = t;
+            }
+
+            Quaternion< PRECISION > result = a * w1 + b1 * w2;
+            result.normalize();
+            return result;
+        }
+*/
 
 
 // calculates the dot product

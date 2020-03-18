@@ -74,8 +74,10 @@ public:
         _method(method)
     {}
     
-    void processAnimationFrame(float t) {
-        VROMatrix4f value = VROMathInterpolateKeyFrameMatrix4f(t, _keyTimes, _keyValues);
+    void processAnimationFrame(float t, bool isPing) {
+        VROMatrix4f value = isPing
+                            ? VROMathInterpolateKeyFrameMatrix4f(t, _keyTimes, _keyValues)
+                            : VROMathInterpolateKeyFrameMatrix4f(t, _keyTimes, std::vector<VROMatrix4f>({_keyValues[1], _keyValues[0]}));
         
         std::shared_ptr<VROAnimatable> animatable = _animatable.lock();
         if (animatable) {

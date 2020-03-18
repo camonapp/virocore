@@ -98,6 +98,13 @@ VRO_METHOD(void, nativeSetAnimationLoop)(VRO_ARGS_STATIC
     });
 }
 
+VRO_METHOD(void, nativeSetAnimationPingPong)(VRO_ARGS_STATIC
+                                         VRO_BOOL pingPong) {
+    VROPlatformDispatchAsyncRenderer([pingPong] {
+        VROTransaction::setAnimationPingPong(pingPong);
+    });
+}
+
 VRO_METHOD(void, nativeSetTimingFunction)(VRO_ARGS_STATIC
                                           VRO_STRING timing_j) {
     std::string timing_s = VRO_STRING_STL(timing_j);

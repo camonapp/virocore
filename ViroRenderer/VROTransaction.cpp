@@ -140,6 +140,14 @@ void VROTransaction::setAnimationLoop(bool loop) {
     animation->_loop = loop;
 }
 
+void VROTransaction::setAnimationPingPong(bool pingPong) {
+    std::shared_ptr<VROTransaction> animation = get();
+    if (!animation) {
+        pabort();
+    }
+    animation->_pingPong = pingPong;
+}
+
 float VROTransaction::getAnimationDuration() {
     std::shared_ptr<VROTransaction> animation = get();
     if (!animation) {
@@ -234,7 +242,8 @@ void VROTransaction::update() {
             continue;
         }
 
-        float percent = (passedTimeInSeconds - transaction->_delayTimeSeconds) / transaction->_durationSeconds;
+        float duration = transaction->_pingPong ? transaction->_durationSeconds * 2 : transaction->_durationSeconds;
+        float percent = (passedTimeInSeconds - transaction->_delayTimeSeconds) / duration;
         if (isinf(percent) || percent > 1.0 - kEpsilon) {
 
             // if _loop set, reset _t to 0 (done inside processAnimations(percent)
@@ -274,16 +283,23 @@ VROTransaction::VROTransaction() :
         _startTimeSeconds(0),
         _delayTimeSeconds(0),
         _currentSpeedModulatedTime(0),
-        _loop(false) {
+        _loop(false),
+        _pingPong(false),
+        _isPing(true) {
     _timingFunction = std::unique_ptr<VROTimingFunction>(new VROTimingFunctionLinear());
 }
 
 void VROTransaction::processAnimations(float t) {
+    if (_pingPong) {
+        _isPing = t <= 0.5f;
+        t = _isPing ? t / 0.5f : (t - 0.5f) / 0.5f;
+    }
+
     _t = t;
     float transformedT = _timingFunction->getT(t);
 
     for (std::shared_ptr<VROAnimation> animation : _animations) {
-        animation->processAnimationFrame(transformedT);
+        animation->processAnimationFrame(transformedT, _isPing);
     }
 }
 

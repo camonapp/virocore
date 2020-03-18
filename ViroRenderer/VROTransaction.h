@@ -128,6 +128,8 @@ public:
      */
     static void setAnimationLoop(bool loop);
 
+    static void setAnimationPingPong(bool pingPong);
+
     /*
      * Set the speed at which the animation runs. The default value is 1.0, which runs the animation at normal speed.
      * A value of 0.0 freezes the animation; a value of 2.0 will run the animation at double speed.
@@ -212,6 +214,8 @@ private:
     double _currentSpeedModulatedTime;
     bool _paused;
     bool _loop;
+    bool _pingPong;
+    bool _isPing;
     std::unique_ptr<VROTimingFunction> _timingFunction;
 
     std::function<void(bool terminate)> _finishCallback;

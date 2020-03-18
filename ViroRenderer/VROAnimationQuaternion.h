@@ -75,8 +75,10 @@ public:
         _method(method)
     {}
     
-    void processAnimationFrame(float t) {
-        VROQuaternion value = VROMathInterpolateKeyFrameQuaternion(t, _keyTimes, _keyValues);
+    void processAnimationFrame(float t, bool isPing) {
+        VROQuaternion value = isPing
+            ? VROMathInterpolateKeyFrameQuaternion(t, _keyTimes, _keyValues)
+            : VROMathInterpolateKeyFrameQuaternion(t, _keyTimes, std::vector<VROQuaternion>({_keyValues[1], _keyValues[0]}));
         
         std::shared_ptr<VROAnimatable> animatable = _animatable.lock();
         if (animatable) {
