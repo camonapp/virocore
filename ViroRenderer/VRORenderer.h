@@ -224,6 +224,13 @@ public:
     void renderEye(VROEyeType eye, VROMatrix4f eyeView, VROMatrix4f eyeProjection,
                    VROViewport viewport, std::shared_ptr<VRODriver> driver);
 
+    void renderEye1(VROEyeType eye, VROMatrix4f eyeView, VROMatrix4f eyeProjection,
+                   VROViewport viewport, std::shared_ptr<VRODriver> driver);
+    void renderEye2(VROEyeType eye, VROMatrix4f eyeView, VROMatrix4f eyeProjection,
+                   VROViewport viewport, std::shared_ptr<VRODriver> driver);
+    void renderEye3(VROEyeType eye, VROMatrix4f eyeView, VROMatrix4f eyeProjection,
+                   VROViewport viewport, std::shared_ptr<VRODriver> driver);
+
     /*
      Render the HUD for the eye. The HUD follows the view, but is not 2D in that HUD elements
      can appear at different depths. The eyeFromHeadMatrix and eyeProjection are required for

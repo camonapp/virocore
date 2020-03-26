@@ -109,6 +109,11 @@ public class ViroViewOVR extends ViroView implements SurfaceHolder.Callback {
         }
 
         @Override
+        public void onBeforeFrameRender() {
+
+        }
+
+        @Override
         public void onDrawFrame() {
             while (!mQueue.isEmpty()) {
                 Runnable r = mQueue.poll();

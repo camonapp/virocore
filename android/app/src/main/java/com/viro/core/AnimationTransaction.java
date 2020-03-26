@@ -167,6 +167,10 @@ public class AnimationTransaction {
         nativeSetAnimationLoop(loop);
     }
 
+    public static void setAnimationPingPong(boolean pingPong) {
+        nativeSetAnimationPingPong(pingPong);
+    }
+
     /**
      * Set a {@link Listener} to invoke when the active transaction completes.
      *
@@ -248,6 +252,7 @@ public class AnimationTransaction {
     private static native void nativeSetAnimationDelay(float delaySeconds);
     private static native void nativeSetAnimationTimeOffset(float timeOffset);
     private static native void nativeSetAnimationLoop(boolean loop);
+    private static native void nativeSetAnimationPingPong(boolean pingPong);
     private static native void nativeSetTimingFunction(String timingFunction);
     private native void nativeDispose(long nativeRef);
     private native void nativePause(long nativeRef);

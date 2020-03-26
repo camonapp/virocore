@@ -611,4 +611,8 @@ public abstract class ViroView extends FrameLayout implements Application.Activi
         };
         new Handler(Looper.getMainLooper()).post(myRunnable);
     }
+
+    public void setProjectionMatrix(float[] matrix) {
+        mNativeRenderer.setProjectionMatrix(matrix);
+    }
 }

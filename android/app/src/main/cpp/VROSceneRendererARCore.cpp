@@ -95,7 +95,11 @@ void VROSceneRendererARCore::setARCoreSession(arcore::Session *session) {
     _session->setARCoreSession(session, getFrameSynchronizer());
 }
 
-void VROSceneRendererARCore::onDrawFrame() {
+void VROSceneRendererARCore::onFrameBegin(){
+
+}
+
+void VROSceneRendererARCore::onFrameRender() {
     if (_destroyed) {
         return;
     }
@@ -109,6 +113,14 @@ void VROSceneRendererARCore::onDrawFrame() {
     ++_frame;
     ALLOCATION_TRACKER_PRINT();
 }
+
+void VROSceneRendererARCore::onFrameEnd() {
+
+}
+
+//void VROSceneRendererARCore::onDrawFrame() {
+//
+//}
 
 void VROSceneRendererARCore::renderFrame() {
     /*

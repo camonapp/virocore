@@ -486,6 +486,51 @@ void VRORenderer::prepareFrame(int frame, VROViewport viewport, VROFieldOfView f
     pglpop();
 }
 
+void VRORenderer::renderEye1(VROEyeType eye, VROMatrix4f eyeView, VROMatrix4f eyeProjection,
+                             VROViewport viewport, std::shared_ptr<VRODriver> driver) {
+    pglpush("Viro Render Eye [%s]", VROEye::toString(eye).c_str());
+    _choreographer->setViewport(viewport, driver);
+
+    std::shared_ptr<VRORenderDelegateInternal> delegate = _delegate.lock();
+    _context->setViewMatrix(eyeView);
+    _context->setProjectionMatrix(eyeProjection);
+    _context->setEyeType(eye);
+    _context->setZNear(kZNear);
+    _context->setZFar(getFarClippingPlane());
+    _context->setInputController(_inputController);
+
+    driver->willRenderEye(*_context.get());
+}
+
+void VRORenderer::renderEye2(VROEyeType eye, VROMatrix4f eyeView, VROMatrix4f eyeProjection,
+                             VROViewport viewport, std::shared_ptr<VRODriver> driver) {
+    if (_sceneController) {
+        if (_outgoingSceneController && _outgoingSceneController->hasActiveTransitionAnimation()) {
+            _choreographer->render(eye, _sceneController->getScene(), _outgoingSceneController->getScene(),
+                                   _renderMetadata, _context.get(), driver);
+        }
+        else {
+            _choreographer->render(eye, _sceneController->getScene(), nullptr,
+                                   _renderMetadata, _context.get(), driver);
+        }
+    }
+
+    if (eye == VROEyeType::Left || eye == VROEyeType::Monocular) {
+        _lastLeftEyeView = eyeView;
+    } else {
+        _lastRightEyeView = eyeView;
+    }
+}
+
+void VRORenderer::renderEye3(VROEyeType eye, VROMatrix4f eyeView, VROMatrix4f eyeProjection,
+                             VROViewport viewport, std::shared_ptr<VRODriver> driver) {
+    driver->didRenderEye(*_context.get());
+
+    // This unbinds the last shader to even out our pglpush and pops
+    driver->unbindShader();
+    pglpop();
+}
+
 void VRORenderer::renderEye(VROEyeType eye, VROMatrix4f eyeView, VROMatrix4f eyeProjection,
                             VROViewport viewport, std::shared_ptr<VRODriver> driver) {
     pglpush("Viro Render Eye [%s]", VROEye::toString(eye).c_str());

@@ -90,6 +90,11 @@ public class ViroViewScene extends ViroView {
          */
         void onFailure(StartupError error, String errorMessage);
 
+        void onSurfaceChanged(int width, int height);
+
+        void onSurfaceCreated();
+
+        void onDrawFrameEnded();
     }
 
     /**
@@ -151,6 +156,10 @@ public class ViroViewScene extends ViroView {
                 };
                 new Handler(Looper.getMainLooper()).post(myRunnable);
             }
+
+            if (view.mStartupListener != null) {
+                view.mStartupListener.onSurfaceCreated();
+            }
         }
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
@@ -159,6 +168,9 @@ public class ViroViewScene extends ViroView {
                 return;
             }
             view.mNativeRenderer.onSurfaceChanged(null, width, height);
+            if (view.mStartupListener != null) {
+                view.mStartupListener.onSurfaceChanged(width, height);
+            }
         }
 
         @Override
@@ -171,6 +183,10 @@ public class ViroViewScene extends ViroView {
                 listener.onDrawFrame();
             }
             view.mNativeRenderer.drawFrame();
+
+            if (view.mStartupListener != null) {
+                view.mStartupListener.onDrawFrameEnded();
+            }
         }
     }
 
@@ -313,6 +329,10 @@ public class ViroViewScene extends ViroView {
         } else {
             init(context, null);
         }
+    }
+
+    public void addFrameListener(FrameListener listener) {
+        mFrameListeners.add(listener);
     }
 
     private void init(Context context, StartupListener rendererStartListener) {

@@ -75,14 +75,7 @@ void VROSceneRendererSceneView::initGL() {
 
 }
 
-void VROSceneRendererSceneView::onDrawFrame() {
-    renderFrame();
-
-    ++_frame;
-    ALLOCATION_TRACKER_PRINT();
-}
-
-void VROSceneRendererSceneView::renderFrame() {
+void VROSceneRendererSceneView::onFrameBegin() {
     glEnable(GL_DEPTH_TEST);
     _driver->setCullMode(VROCullMode::Back);
 
@@ -92,10 +85,52 @@ void VROSceneRendererSceneView::renderFrame() {
     VROMatrix4f projection = _projectionMatrix.isIdentity() ? fov.toPerspectiveProjection(kZNear, _renderer->getFarClippingPlane()) : _projectionMatrix;
 
     _renderer->prepareFrame(_frame, viewport, fov, VROMatrix4f::identity(), projection, _driver);
-    _renderer->renderEye(VROEyeType::Monocular, _renderer->getLookAtMatrix(), projection, viewport, _driver);
-    _renderer->renderHUD(VROEyeType::Monocular, VROMatrix4f::identity(), projection, _driver);
-    _renderer->endFrame(_driver);
+//    _renderer->renderEye1(VROEyeType::Monocular, _renderer->getLookAtMatrix(), projection, viewport, _driver);
+//    _renderer->renderEye2(VROEyeType::Monocular, _renderer->getLookAtMatrix(), projection, viewport, _driver);
+//    _renderer->renderEye3(VROEyeType::Monocular, _renderer->getLookAtMatrix(), projection, viewport, _driver);
 }
+
+void VROSceneRendererSceneView::onFrameRender() {
+    VROViewport viewport(0, 0, _surfaceSize.width, _surfaceSize.height);
+    VROFieldOfView fov = _renderer->computeUserFieldOfView(viewport.getWidth(), viewport.getHeight());
+    //VROMatrix4f projection = fov.toPerspectiveProjection(kZNear, _renderer->getFarClippingPlane());
+    VROMatrix4f projection = _projectionMatrix.isIdentity() ? fov.toPerspectiveProjection(kZNear, _renderer->getFarClippingPlane()) : _projectionMatrix;
+
+    _renderer->renderEye(VROEyeType::Monocular, _renderer->getLookAtMatrix(), projection, viewport, _driver);
+//    _renderer->renderEye1(VROEyeType::Monocular, _renderer->getLookAtMatrix(), projection, viewport, _driver);
+//    _renderer->renderEye2(VROEyeType::Monocular, _renderer->getLookAtMatrix(), projection, viewport, _driver);
+//    _renderer->renderEye3(VROEyeType::Monocular, _renderer->getLookAtMatrix(), projection, viewport, _driver);
+    _renderer->renderHUD(VROEyeType::Monocular, VROMatrix4f::identity(), projection, _driver);
+}
+
+void VROSceneRendererSceneView::onFrameEnd() {
+    _renderer->endFrame(_driver);
+
+    ++_frame;
+    ALLOCATION_TRACKER_PRINT();
+}
+
+//void VROSceneRendererSceneView::onDrawFrame() {
+//    renderFrame();
+//
+//    ++_frame;
+//    ALLOCATION_TRACKER_PRINT();
+//}
+//
+//void VROSceneRendererSceneView::renderFrame() {
+//    glEnable(GL_DEPTH_TEST);
+//    _driver->setCullMode(VROCullMode::Back);
+//
+//    VROViewport viewport(0, 0, _surfaceSize.width, _surfaceSize.height);
+//    VROFieldOfView fov = _renderer->computeUserFieldOfView(viewport.getWidth(), viewport.getHeight());
+//    //VROMatrix4f projection = fov.toPerspectiveProjection(kZNear, _renderer->getFarClippingPlane());
+//    VROMatrix4f projection = _projectionMatrix.isIdentity() ? fov.toPerspectiveProjection(kZNear, _renderer->getFarClippingPlane()) : _projectionMatrix;
+//
+//    _renderer->prepareFrame(_frame, viewport, fov, VROMatrix4f::identity(), projection, _driver);
+//    _renderer->renderEye(VROEyeType::Monocular, _renderer->getLookAtMatrix(), projection, viewport, _driver);
+//    _renderer->renderHUD(VROEyeType::Monocular, VROMatrix4f::identity(), projection, _driver);
+//    _renderer->endFrame(_driver);
+//}
 
 /*
  Update render sizes as the surface changes.

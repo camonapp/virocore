@@ -62,7 +62,12 @@ public:
      Inherited from VROSceneRenderer.
      */
     void initGL();
-    void onDrawFrame();
+    //void onDrawFrame();
+    void onFrameBegin();
+    void onFrameRender();
+    void onFrameEnd();
+
+
     void onTouchEvent(int action, float x, float y);
     void onKeyEvent(int keyCode, int action) {} // Not Required
     void onPinchEvent(int pinchState, float scaleFactor, float viewportX, float viewportY);
@@ -90,7 +95,7 @@ public:
 
 private:
 
-    void renderFrame();
+//    void renderFrame();
 
     gvr::Sizei _surfaceSize;
     VROMatrix4f _projectionMatrix;

@@ -73,6 +73,11 @@ public class VideoSink implements SurfaceTexture.OnFrameAvailableListener, Frame
     }
 
     @Override
+    public void onBeforeFrameRender() {
+
+    }
+
+    @Override
     public void onDrawFrame() {
         synchronized (this) {
             if (mSurfacedUpdated) {

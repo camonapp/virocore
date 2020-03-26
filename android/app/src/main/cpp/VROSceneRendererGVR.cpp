@@ -115,11 +115,45 @@ void VROSceneRendererGVR::initGL() {
     _hudViewport.SetReprojection(GVR_REPROJECTION_NONE);
 }
 
-void VROSceneRendererGVR::onDrawFrame() {
+//void VROSceneRendererGVR::onDrawFrame() {
+//    // Because we are using 2X MSAA, we can render to half as many pixels and
+//    // achieve similar quality. If the size changed, resize the framebuffer
+//    gvr::Sizei recommended_size = _vrModeEnabled ?
+//            halfPixelCount(_gvr->GetMaximumEffectiveRenderTargetSize()) : _surfaceSize;
+//    if (_renderSize.width != recommended_size.width || _renderSize.height != recommended_size.height) {
+//        if (_vrModeEnabled) {
+//            // For some reason, Samsung phones won't work if this line is run when switching to
+//            // Mono/360 mode (the Axon/Pixel work, so i wonder if it's a diff in Mali vs Adreno GPUs)
+//            _swapchain->ResizeBuffer(0, recommended_size);
+//        }
+//        _renderSize = recommended_size;
+//    }
+//    // Obtain the latest, predicted head pose
+//    gvr::ClockTimePoint target_time = gvr::GvrApi::GetTimePointNow();
+//    target_time.monotonic_system_time_nanos += kPredictionTimeWithoutVsyncNanos;
+//
+//    _headView = _gvr->GetHeadSpaceFromStartSpaceRotation(target_time);
+//    VROMatrix4f headView = VROGVRUtil::toMatrix4f(_headView);
+//
+//    if (_vrModeEnabled) {
+//        renderStereo(headView);
+//    } else {
+//        renderMono(headView);
+//    }
+//
+//    ++_frame;
+//    ALLOCATION_TRACKER_PRINT();
+//}
+
+void VROSceneRendererGVR::onFrameBegin() {
+
+}
+
+void VROSceneRendererGVR::onFrameRender() {
     // Because we are using 2X MSAA, we can render to half as many pixels and
     // achieve similar quality. If the size changed, resize the framebuffer
     gvr::Sizei recommended_size = _vrModeEnabled ?
-            halfPixelCount(_gvr->GetMaximumEffectiveRenderTargetSize()) : _surfaceSize;
+                                  halfPixelCount(_gvr->GetMaximumEffectiveRenderTargetSize()) : _surfaceSize;
     if (_renderSize.width != recommended_size.width || _renderSize.height != recommended_size.height) {
         if (_vrModeEnabled) {
             // For some reason, Samsung phones won't work if this line is run when switching to
@@ -143,6 +177,10 @@ void VROSceneRendererGVR::onDrawFrame() {
 
     ++_frame;
     ALLOCATION_TRACKER_PRINT();
+}
+
+void VROSceneRendererGVR::onFrameEnd() {
+
 }
 
 // For stereo rendering we use GVR's swapchain, which provides async reprojection

@@ -182,9 +182,24 @@ VRO_METHOD(void, nativeInitializeGL)(VRO_ARGS
     sceneRenderer->initGL();
 }
 
-VRO_METHOD(void, nativeDrawFrame)(VRO_ARGS
-                                  jlong native_renderer) {
-    Renderer::native(native_renderer)->onDrawFrame();
+//VRO_METHOD(void, nativeDrawFrame)(VRO_ARGS
+//                                  jlong native_renderer) {
+//    Renderer::native(native_renderer)->onDrawFrame();
+//}
+
+VRO_METHOD(void, nativeFrameBegin)(VRO_ARGS
+                                   jlong native_renderer) {
+    Renderer::native(native_renderer)->onFrameBegin();
+}
+
+VRO_METHOD(void, nativeFrameRender)(VRO_ARGS
+                                   jlong native_renderer) {
+    Renderer::native(native_renderer)->onFrameRender();
+}
+
+VRO_METHOD(void, nativeFrameEnd)(VRO_ARGS
+                                   jlong native_renderer) {
+    Renderer::native(native_renderer)->onFrameEnd();
 }
 
 VRO_METHOD (void, nativeOnKeyEvent)(VRO_ARGS

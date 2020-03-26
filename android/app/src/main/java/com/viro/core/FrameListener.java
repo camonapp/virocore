@@ -30,6 +30,8 @@ package com.viro.core;
  */
 public interface FrameListener {
 
+    public void onBeforeFrameRender();
+
     /**
      * Invoked just before a frame is drawn.
      */

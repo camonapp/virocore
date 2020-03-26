@@ -53,7 +53,10 @@ public:
     /*
      Main render loop.
      */
-    virtual void onDrawFrame() = 0;
+//    virtual void onDrawFrame() = 0;
+    virtual void onFrameBegin() = 0;
+    virtual void onFrameRender() = 0;
+    virtual void onFrameEnd() = 0;
 
     /*
      InputEvent methods for notifying the renderer.

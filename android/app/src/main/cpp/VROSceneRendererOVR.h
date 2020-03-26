@@ -52,7 +52,11 @@ public:
      Inherited from VROSceneRenderer.
      */
     void initGL() {} // Not required
-    void onDrawFrame() {} // Not required
+    //void onDrawFrame() {} // Not required
+    void onFrameBegin() {};
+    void onFrameRender() {};
+    void onFrameEnd() {};
+
     void onTouchEvent(int action, float x, float y);
     void onKeyEvent(int keyCode, int action);
     void setVRModeEnabled(bool enabled) {} // Not supported

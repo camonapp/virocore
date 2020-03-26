@@ -68,6 +68,10 @@ public class Renderer {
         }
     }
 
+    public void setProjectionMatrix(float[] m) {
+        nativeSetProjectionMatrix(mNativeRef, m);
+    }
+
     protected Renderer() {
 
     }
@@ -90,7 +94,14 @@ public class Renderer {
     }
 
     public void drawFrame() {
-        nativeDrawFrame(mNativeRef);
+//        nativeDrawFrame(mNativeRef);
+
+        nativeFrameBegin(mNativeRef);
+        if (mFrameListener != null) {
+            mFrameListener.onBeforeFrameRender();
+        }
+        nativeFrameRender(mNativeRef);
+        nativeFrameEnd(mNativeRef);
     }
     public void setVRModeEnabled(boolean enabled) { nativeSetVRModeEnabled(mNativeRef, enabled); }
 
@@ -302,7 +313,12 @@ public class Renderer {
     private native void nativeDestroyFrameListener(long frameListenerRef);
     private native void nativeInitializeGL(long nativeRenderer, boolean sRGBFramebuffer, boolean testingMode);
     private native void nativeSetVRModeEnabled(long nativeRenderer, boolean enabled);
-    private native long nativeDrawFrame(long nativeRenderer);
+//    private native long nativeDrawFrame(long nativeRenderer);
+    private native long nativeFrameBegin(long nativeRenderer);
+    private native long nativeFrameRender(long nativeRenderer);
+    private native long nativeFrameEnd(long nativeRenderer);
+
+
     private native void nativeOnStart(long nativeRenderer);
     private native void nativeOnKeyEvent(long nativeRenderer, int keyCode, int action);
     private native void nativeOnTouchEvent(long nativeRenderer, int onTouchAction, float touchPosX, float touchPosY);
@@ -337,5 +353,7 @@ public class Renderer {
     private native float nativeGetFieldOfView(long nativeRef);
     private native void nativePerformHitTestWithPoint(long nativeRef, int x, int y, boolean boundsOnly, HitTestListener callback);
     private native void nativePerformHitTestWithRay(long nativeRef, float origin[], float ray[], boolean boundsOnly, HitTestListener callback);
+
+    private native void nativeSetProjectionMatrix(long nativeRenderer, float[] matrix);
 
 }
