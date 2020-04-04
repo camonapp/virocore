@@ -216,16 +216,16 @@ public class Geometry {
      * material has already been destroyed, return false
      */
     //#IFDEF 'viro_react'
-    public void copyAndSetMaterials(List<Material> materials) {
-        long[] materialRefs = new long[materials.size()];
-        for (int i = 0; i < materials.size(); i++) {
-            materialRefs[i] = materials.get(i).mNativeRef;
-            if (materialRefs[i] == 0) {
-                return;
-            }
-        }
-        nativeCopyAndSetMaterials(mNativeRef, materialRefs);
-    }
+    //public void copyAndSetMaterials(List<Material> materials) {
+        //long[] materialRefs = new long[materials.size()];
+        //for (int i = 0; i < materials.size(); i++) {
+            //materialRefs[i] = materials.get(i).mNativeRef;
+            //if (materialRefs[i] == 0) {
+                //return;
+            //}
+        //}
+        //nativeCopyAndSetMaterials(mNativeRef, materialRefs);
+    //}
     //#ENDIF
 
     private native long nativeCreateGeometry();

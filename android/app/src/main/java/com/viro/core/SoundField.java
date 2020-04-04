@@ -83,11 +83,11 @@ public class SoundField implements BaseSound {
      * @hide
      */
     //#IFDEF 'viro_react'
-    public SoundField(SoundData data, ViroContext viroContext,
-                      PlaybackListener delegate) {
-        mNativeRef = nativeCreateSoundFieldWithData(data.mNativeRef, viroContext.mNativeRef);
-        mListener = delegate;
-    }
+    //public SoundField(SoundData data, ViroContext viroContext,
+                      //PlaybackListener delegate) {
+        //mNativeRef = nativeCreateSoundFieldWithData(data.mNativeRef, viroContext.mNativeRef);
+        //mListener = delegate;
+    //}
     //#ENDIF
 
     @Override

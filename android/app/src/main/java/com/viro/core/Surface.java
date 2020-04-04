@@ -89,11 +89,11 @@ public class Surface extends Geometry {
      * @hide
      */
     //#IFDEF 'viro_react'
-    public Surface(float width, float height, float u0, float v0, float u1, float v1,
-                   Surface oldSurface) {
-        mNativeRef = nativeCreateSurfaceFromSurface(width, height, u0, v0, u1, v1,
-                oldSurface.mNativeRef);
-    }
+    //public Surface(float width, float height, float u0, float v0, float u1, float v1,
+                   //Surface oldSurface) {
+        //mNativeRef = nativeCreateSurfaceFromSurface(width, height, u0, v0, u1, v1,
+                //oldSurface.mNativeRef);
+    //}
     //#ENDIF
 
     protected void finalize() throws Throwable {
@@ -164,34 +164,34 @@ public class Surface extends Geometry {
      * @param texture
      */
     //#IFDEF 'viro_react'
-    public void setVideoTexture(VideoTexture texture){
-        nativeSetVideoTexture(mNativeRef, texture.mNativeRef);
-    }
+    //public void setVideoTexture(VideoTexture texture){
+        //nativeSetVideoTexture(mNativeRef, texture.mNativeRef);
+    //}
     //#ENDIF
     /**
      * @hide
      * @param texture
      */
     //#IFDEF 'viro_react'
-    public void setImageTexture(Texture texture) {
-        nativeSetImageTexture(mNativeRef, texture.mNativeRef);
-    }
+    //public void setImageTexture(Texture texture) {
+        //nativeSetImageTexture(mNativeRef, texture.mNativeRef);
+    //}
     //#ENDIF
     /**
      * @hide
      * @param material
      */
     //#IFDEF 'viro_react'
-    public void setMaterial(Material material) {
-        super.setMaterials(Arrays.asList(material));
-    }
+    //public void setMaterial(Material material) {
+        //super.setMaterials(Arrays.asList(material));
+    //}
     //#ENDIF
     /**
      * @hide
      */
     //#IFDEF 'viro_react'
-    public void clearMaterial() {
-        nativeClearMaterial(mNativeRef);
-    }
+    //public void clearMaterial() {
+        //nativeClearMaterial(mNativeRef);
+    //}
     //#ENDIF
 }

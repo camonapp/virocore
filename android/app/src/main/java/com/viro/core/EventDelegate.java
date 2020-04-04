@@ -106,10 +106,10 @@ public class EventDelegate {
          * @hide
          */
         //#IFDEF 'viro_react'
-        void onCameraTransformUpdate(float posX, float poxY, float posZ,
-                                     float rotEulerX, float rotEulerY, float rotEulerZ,
-                                     float forwardX, float forwardY, float forwardZ,
-                                     float upX, float upY, float upZ);
+        //void onCameraTransformUpdate(float posX, float poxY, float posZ,
+                                     //float rotEulerX, float rotEulerY, float rotEulerZ,
+                                     //float forwardX, float forwardY, float forwardZ,
+                                     //float upX, float upY, float upZ);
         //#ENDIF
     }
 
@@ -327,14 +327,14 @@ public class EventDelegate {
      * @hide
      */
     //#IFDEF 'viro_react'
-    void onCameraTransformUpdate(float posX, float poxY, float posZ,
-                                 float rotEulerX, float rotEulerY, float rotEulerZ,
-                                 float forwardX, float forwardY, float forwardZ,
-                                 float upX, float upY, float upZ) {
-        if (mDelegate != null && mDelegate.get() != null) {
-            mDelegate.get().onCameraTransformUpdate(posX, poxY, posZ, rotEulerX, rotEulerY, rotEulerZ,
-                                                    forwardX, forwardY, forwardZ, upX, upY, upZ);
-        }
-    }
+    //void onCameraTransformUpdate(float posX, float poxY, float posZ,
+                                 //float rotEulerX, float rotEulerY, float rotEulerZ,
+                                 //float forwardX, float forwardY, float forwardZ,
+                                 //float upX, float upY, float upZ) {
+        //if (mDelegate != null && mDelegate.get() != null) {
+            //mDelegate.get().onCameraTransformUpdate(posX, poxY, posZ, rotEulerX, rotEulerY, rotEulerZ,
+                                                    //forwardX, forwardY, forwardZ, upX, upY, upZ);
+        //}
+    //}
     //#ENDIF
 }

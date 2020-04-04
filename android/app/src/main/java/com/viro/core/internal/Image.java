@@ -32,46 +32,46 @@ import com.viro.core.Texture;
  * @hide
  */
 //#IFDEF 'viro_react'
-public class Image {
-    public long mNativeRef;
+//public class Image {
+    //public long mNativeRef;
 
-    public Image(String resource, Texture.Format format) {
-        mNativeRef = nativeCreateImage(resource, format.getStringValue());
-    }
+    //public Image(String resource, Texture.Format format) {
+        //mNativeRef = nativeCreateImage(resource, format.getStringValue());
+    //}
 
-    public Image(Bitmap bitmap, Texture.Format format) {
-        mNativeRef = nativeCreateImageFromBitmap(bitmap, format.getStringValue());
-    }
+    //public Image(Bitmap bitmap, Texture.Format format) {
+        //mNativeRef = nativeCreateImageFromBitmap(bitmap, format.getStringValue());
+    //}
 
-    @Override
-    protected void finalize() throws Throwable {
-        try {
-            destroy();
-        }
-        finally {
-            super.finalize();
-        }
-    }
+    //@Override
+    //protected void finalize() throws Throwable {
+        //try {
+            //destroy();
+        //}
+        //finally {
+            //super.finalize();
+        //}
+    //}
 
-    public long getWidth() {
-        return nativeGetWidth(mNativeRef);
-    }
+    //public long getWidth() {
+        //return nativeGetWidth(mNativeRef);
+    //}
 
-    public long getHeight() {
-        return nativeGetHeight(mNativeRef);
-    }
+    //public long getHeight() {
+        //return nativeGetHeight(mNativeRef);
+    //}
 
-    public void destroy() {
-        if (mNativeRef != 0) {
-            nativeDestroyImage(mNativeRef);
-            mNativeRef = 0;
-        }
-    }
+    //public void destroy() {
+        //if (mNativeRef != 0) {
+            //nativeDestroyImage(mNativeRef);
+            //mNativeRef = 0;
+        //}
+    //}
 
-    private native long nativeCreateImage(String resource, String format);
-    private native long nativeCreateImageFromBitmap(Bitmap bitmap, String format);
-    private native int nativeGetWidth(long nativeRef);
-    private native int nativeGetHeight(long nativeRef);
-    private native void nativeDestroyImage(long nativeRef);
-}
+    //private native long nativeCreateImage(String resource, String format);
+    //private native long nativeCreateImageFromBitmap(Bitmap bitmap, String format);
+    //private native int nativeGetWidth(long nativeRef);
+    //private native int nativeGetHeight(long nativeRef);
+    //private native void nativeDestroyImage(long nativeRef);
+//}
 //#ENDIF

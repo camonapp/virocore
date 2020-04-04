@@ -70,21 +70,21 @@ public class Spotlight extends Light {
      * @param outerAngle
      */
     //#IFDEF 'viro_react'
-    public Spotlight(long color, float intensity, float attenuationStartDistance,
-                     float attenuationEndDistance, Vector position, Vector direction,
-                     float innerAngle, float outerAngle) {
-        mColor = color;
-        mIntensity = intensity;
-        mAttenuationStartDistance = attenuationStartDistance;
-        mAttenuationEndDistance = attenuationEndDistance;
-        mPosition = position;
-        mDirection = direction;
-        mInnerAngle = innerAngle;
-        mOuterAngle = outerAngle;
-        mNativeRef = nativeCreateSpotLight(color, intensity, attenuationStartDistance, attenuationEndDistance,
-                position.x, position.y, position.z, direction.x, direction.y, direction.z,
-                innerAngle, outerAngle);
-    }
+    //public Spotlight(long color, float intensity, float attenuationStartDistance,
+                     //float attenuationEndDistance, Vector position, Vector direction,
+                     //float innerAngle, float outerAngle) {
+        //mColor = color;
+        //mIntensity = intensity;
+        //mAttenuationStartDistance = attenuationStartDistance;
+        //mAttenuationEndDistance = attenuationEndDistance;
+        //mPosition = position;
+        //mDirection = direction;
+        //mInnerAngle = innerAngle;
+        //mOuterAngle = outerAngle;
+        //mNativeRef = nativeCreateSpotLight(color, intensity, attenuationStartDistance, attenuationEndDistance,
+                //position.x, position.y, position.z, direction.x, direction.y, direction.z,
+                //innerAngle, outerAngle);
+    //}
     //#ENDIF
 
     /**

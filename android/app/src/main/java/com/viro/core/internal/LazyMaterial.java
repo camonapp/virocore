@@ -43,34 +43,34 @@ package com.viro.core.internal;
  @hide
  */
 //#IFDEF 'viro_react'
-public abstract class LazyMaterial {
+//public abstract class LazyMaterial {
 
-    protected long mNativeRef;
+    //protected long mNativeRef;
 
-    public LazyMaterial() {
-        mNativeRef = nativeCreateLazyMaterial();
-    }
-    public abstract LazyMaterial copy();
+    //public LazyMaterial() {
+        //mNativeRef = nativeCreateLazyMaterial();
+    //}
+    //public abstract LazyMaterial copy();
 
-    public void destroy() {
-        nativeDestroyLazyMaterial(mNativeRef);
-    }
+    //public void destroy() {
+        //nativeDestroyLazyMaterial(mNativeRef);
+    //}
 
-    /*
-     Return the pointer to the native VROMaterial that we're lazily
-     loading. This is invoked natively.
-     */
-    public abstract long get();
+    ///*
+     //Return the pointer to the native VROMaterial that we're lazily
+     //loading. This is invoked natively.
+     //*/
+    //public abstract long get();
 
-    /*
-     Get the native reference to this lazy material.
-     */
-    public long getNativeRef() {
-        return mNativeRef;
-    }
+    ///*
+     //Get the native reference to this lazy material.
+     //*/
+    //public long getNativeRef() {
+        //return mNativeRef;
+    //}
 
-    private native long nativeCreateLazyMaterial();
-    private native long nativeDestroyLazyMaterial(long nativeRef);
+    //private native long nativeCreateLazyMaterial();
+    //private native long nativeDestroyLazyMaterial(long nativeRef);
 
-}
+//}
 //#ENDIF

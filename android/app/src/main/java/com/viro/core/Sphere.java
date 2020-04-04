@@ -196,9 +196,9 @@ public class Sphere extends Geometry {
      * @param texture
      */
     //#IFDEF 'viro_react'
-    public void setVideoTexture(VideoTexture texture){
-        nativeSetVideoTexture(mNativeRef, texture.mNativeRef);
-    }
+    //public void setVideoTexture(VideoTexture texture){
+        //nativeSetVideoTexture(mNativeRef, texture.mNativeRef);
+    //}
     //#ENDIF
 
 }

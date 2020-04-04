@@ -24,7 +24,7 @@
 package com.viro.core;
 
 //#IFDEF 'viro_react'
-import com.viro.core.internal.ARDeclarativeNode;
+//import com.viro.core.internal.ARDeclarativeNode;
 //#ENDIF
 import android.net.Uri;
 import android.util.Log;
@@ -294,12 +294,12 @@ public class ARScene extends Scene {
      * @param declarative
      */
     //#IFDEF 'viro_react'
-    public ARScene(boolean declarative) {
-        super(true); // Invoke the dummy constructor
-        long nativeRef = nativeCreateARSceneControllerDeclarative();
-        setSceneRef(nativeRef);
-        mNativeARDelegateRef = nativeCreateARSceneDelegate(mNativeRef);
-    }
+    //public ARScene(boolean declarative) {
+        //super(true); // Invoke the dummy constructor
+        //long nativeRef = nativeCreateARSceneControllerDeclarative();
+        //setSceneRef(nativeRef);
+        //mNativeARDelegateRef = nativeCreateARSceneDelegate(mNativeRef);
+    //}
     //#ENDIF
 
     /**
@@ -536,27 +536,27 @@ public class ARScene extends Scene {
      * @hide
      */
     //#IFDEF 'viro_react'
-    public void addARDeclarativeNode(ARDeclarativeNode node) {
-        nativeAddARNode(mNativeRef, node.mNativeRef);
-    }
+    //public void addARDeclarativeNode(ARDeclarativeNode node) {
+        //nativeAddARNode(mNativeRef, node.mNativeRef);
+    //}
     //#ENDIF
 
     /**
      * @hide
      */
     //#IFDEF 'viro_react'
-    public void updateARDeclarativeNode(ARDeclarativeNode node) {
-        nativeUpdateARNode(mNativeRef, node.mNativeRef);
-    }
+    //public void updateARDeclarativeNode(ARDeclarativeNode node) {
+        //nativeUpdateARNode(mNativeRef, node.mNativeRef);
+    //}
     //#ENDIF
 
     /**
      * @hide
      */
     //#IFDEF 'viro_react'
-    public void removeARDeclarativeNode(ARDeclarativeNode node) {
-        nativeRemoveARNode(mNativeRef, node.mNativeRef);
-    }
+    //public void removeARDeclarativeNode(ARDeclarativeNode node) {
+        //nativeRemoveARNode(mNativeRef, node.mNativeRef);
+    //}
     //#ENDIF
 
     /**
@@ -605,37 +605,37 @@ public class ARScene extends Scene {
      * @hide
      */
     //#IFDEF 'viro_react'
-    public void loadARImageDatabaseDeclarative(Uri uri, LoadARImageDatabaseListener listener) {
-        mLoadARImageDatabaseListener = listener;
-        nativeLoadARImageDatabase(mNativeRef, uri.toString(), false);
-    }
+    //public void loadARImageDatabaseDeclarative(Uri uri, LoadARImageDatabaseListener listener) {
+        //mLoadARImageDatabaseListener = listener;
+        //nativeLoadARImageDatabase(mNativeRef, uri.toString(), false);
+    //}
     //#ENDIF
 
     /**
      * @hide
      */
     //#IFDEF 'viro_react'
-    public void unloadARImageDatabaseDeclarative() {
-        nativeUnloadARImageDatabase(mNativeRef, false);
-    }
+    //public void unloadARImageDatabaseDeclarative() {
+        //nativeUnloadARImageDatabase(mNativeRef, false);
+    //}
     //#ENDIF
 
     /**
      * @hide
      */
     //#IFDEF 'viro_react'
-    public void addARImageTargetDeclarative(ARImageTarget target) {
-        nativeAddARImageTargetDeclarative(mNativeRef, target.getNativeRef());
-    }
+    //public void addARImageTargetDeclarative(ARImageTarget target) {
+        //nativeAddARImageTargetDeclarative(mNativeRef, target.getNativeRef());
+    //}
     //#ENDIF
 
     /**
      * @hide
      */
     //#IFDEF 'viro_react'
-    public void removeARImageTargetDeclarative(ARImageTarget target) {
-        nativeRemoveARImageTargetDeclarative(mNativeRef, target.getNativeRef());
-    }
+    //public void removeARImageTargetDeclarative(ARImageTarget target) {
+        //nativeRemoveARImageTargetDeclarative(mNativeRef, target.getNativeRef());
+    //}
     //#ENDIF
 
     /**

@@ -366,4 +366,18 @@ VRO_METHOD(void, nativeDestroyTexture)(VRO_ARGS
     VRO_REF_DELETE(VROTexture, nativeRef);
 }
 
+VRO_METHOD(void, nativeUpdateData)(VRO_ARGS
+                                               VRO_REF(VROTexture) nativeRef,
+                                               VRO_OBJECT jbuffer) {
+    VRO_METHOD_PREAMBLE;
+    void *buffer = VRO_BUFFER_GET_ADDRESS(jbuffer);
+    VRO_LONG capacity = VRO_BUFFER_GET_CAPACITY(jbuffer);
+
+    std::shared_ptr<VROData> data = std::make_shared<VROData>(buffer, capacity);
+    std::vector<std::shared_ptr<VROData>> dataVec = { data };
+
+    std::shared_ptr<VROTexture> texture = VRO_REF_GET(VROTexture, nativeRef);
+    texture->updateData(dataVec);
+}
+
 } // extern "C"

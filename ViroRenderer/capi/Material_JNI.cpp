@@ -505,4 +505,15 @@ VRO_METHOD(void, nativeSetColorWriteMask)(VRO_ARGS
     });
 }
 
+VRO_METHOD(void, nativeUpdateSubstrate)(VRO_ARGS
+                                                VRO_REF(VROMaterial) material_j) {
+    std::weak_ptr<VROMaterial> material_w = VRO_REF_GET(VROMaterial, material_j);
+    VROPlatformDispatchAsyncRenderer([material_w] {
+        std::shared_ptr<VROMaterial> material = material_w.lock();
+        if (material) {
+            material->updateSubstrate();
+        }
+    });
+}
+
 }  // extern "C"

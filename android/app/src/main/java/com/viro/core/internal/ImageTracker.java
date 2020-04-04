@@ -35,21 +35,21 @@ import com.viro.core.ARImageTarget;
 //#IFDEF 'viro_react'
 // This class is meant to create a singular instance of VROARImageTracker and manually
 // run frames through it w/ findTarget(Bitmap). Should only be used for debug.
-public class ImageTracker {
+//public class ImageTracker {
 
-    private ARImageTarget mImageTarget;
-    private long mNativeRef;
+    //private ARImageTarget mImageTarget;
+    //private long mNativeRef;
 
-    public ImageTracker(ARImageTarget imageTarget) {
-        mImageTarget = imageTarget;
-        mNativeRef = nativeCreateImageTracker(imageTarget.getNativeRef());
-    }
+    //public ImageTracker(ARImageTarget imageTarget) {
+        //mImageTarget = imageTarget;
+        //mNativeRef = nativeCreateImageTracker(imageTarget.getNativeRef());
+    //}
 
-    public ImageTrackerOutput findTarget(Bitmap image) {
-        return new ImageTrackerOutput(nativeFindTarget(mNativeRef, image));
-    }
+    //public ImageTrackerOutput findTarget(Bitmap image) {
+        //return new ImageTrackerOutput(nativeFindTarget(mNativeRef, image));
+    //}
 
-    private native long nativeCreateImageTracker(long imageTargetRef);
-    private native long nativeFindTarget(long nativeRef, Bitmap bitmap);
-}
+    //private native long nativeCreateImageTracker(long imageTargetRef);
+    //private native long nativeFindTarget(long nativeRef, Bitmap bitmap);
+//}
 //#ENDIF

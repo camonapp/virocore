@@ -269,6 +269,8 @@ public:
         return _height;
     }
 
+    void updateData(std::vector<std::shared_ptr<VROData>> &data);
+
 protected:
     int _width, _height;
 

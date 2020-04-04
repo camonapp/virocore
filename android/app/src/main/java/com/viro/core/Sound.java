@@ -102,10 +102,10 @@ public class Sound implements BaseSound {
      * @hide
      */
     //#IFDEF 'viro_react'
-    public Sound(SoundData data, ViroContext viroContext, PlaybackListener listener) {
-        mListener = listener;
-        mNativeRef = nativeCreateSoundWithData(data.mNativeRef, viroContext.mNativeRef);
-    }
+    //public Sound(SoundData data, ViroContext viroContext, PlaybackListener listener) {
+        //mListener = listener;
+        //mNativeRef = nativeCreateSoundWithData(data.mNativeRef, viroContext.mNativeRef);
+    //}
     //#ENDIF
     @Override
     protected void finalize() throws Throwable {

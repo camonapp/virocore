@@ -523,40 +523,40 @@ public class Material {
      * @hide
      */
     //#IFDEF 'viro_react'
-    public Material(LightingModel lightingModel, int diffuseColor, Texture diffuseTexture, float diffuseIntensity, Texture specularTexture,
-                    float shininess, float fresnelExponent, Texture normalMap, CullMode cullMode,
-                    TransparencyMode transparencyMode, BlendMode blendMode, float bloomThreshold,
-                    boolean writesToDepthBuffer, boolean readsFromDepthBuffer, EnumSet<ColorWriteMask> colorWriteMask) {
+    //public Material(LightingModel lightingModel, int diffuseColor, Texture diffuseTexture, float diffuseIntensity, Texture specularTexture,
+                    //float shininess, float fresnelExponent, Texture normalMap, CullMode cullMode,
+                    //TransparencyMode transparencyMode, BlendMode blendMode, float bloomThreshold,
+                    //boolean writesToDepthBuffer, boolean readsFromDepthBuffer, EnumSet<ColorWriteMask> colorWriteMask) {
 
-        mWritesToDepthBuffer = writesToDepthBuffer;
-        mReadsFromDepthBuffer = readsFromDepthBuffer;
-        mColorWriteMask = colorWriteMask;
-        mLightingModel = lightingModel;
-        mDiffuseTexture = diffuseTexture;
-        mDiffuseColor = diffuseColor;
-        mDiffuseIntensity = diffuseIntensity;
-        mSpecularTexture = specularTexture;
-        mShininess = shininess;
-        mFresnelExponent = fresnelExponent;
-        mNormalMap = normalMap;
-        mCullMode = cullMode;
-        mTransparencyMode = transparencyMode;
-        mBlendMode = blendMode;
-        mBloomThreshold = bloomThreshold;
-        mNativeRef = nativeCreateImmutableMaterial(lightingModel.getStringValue(),
-                diffuseColor,
-                diffuseTexture != null ? diffuseTexture.mNativeRef : 0,
-                diffuseIntensity,
-                specularTexture != null ? specularTexture.mNativeRef : 0,
-                shininess,
-                fresnelExponent,
-                normalMap != null ? normalMap.mNativeRef : 0,
-                cullMode.getStringValue(),
-                transparencyMode.getStringValue(),
-                blendMode.getStringValue(),
-                bloomThreshold, writesToDepthBuffer, readsFromDepthBuffer,
-                getMaskArray(colorWriteMask));
-    }
+        //mWritesToDepthBuffer = writesToDepthBuffer;
+        //mReadsFromDepthBuffer = readsFromDepthBuffer;
+        //mColorWriteMask = colorWriteMask;
+        //mLightingModel = lightingModel;
+        //mDiffuseTexture = diffuseTexture;
+        //mDiffuseColor = diffuseColor;
+        //mDiffuseIntensity = diffuseIntensity;
+        //mSpecularTexture = specularTexture;
+        //mShininess = shininess;
+        //mFresnelExponent = fresnelExponent;
+        //mNormalMap = normalMap;
+        //mCullMode = cullMode;
+        //mTransparencyMode = transparencyMode;
+        //mBlendMode = blendMode;
+        //mBloomThreshold = bloomThreshold;
+        //mNativeRef = nativeCreateImmutableMaterial(lightingModel.getStringValue(),
+                //diffuseColor,
+                //diffuseTexture != null ? diffuseTexture.mNativeRef : 0,
+                //diffuseIntensity,
+                //specularTexture != null ? specularTexture.mNativeRef : 0,
+                //shininess,
+                //fresnelExponent,
+                //normalMap != null ? normalMap.mNativeRef : 0,
+                //cullMode.getStringValue(),
+                //transparencyMode.getStringValue(),
+                //blendMode.getStringValue(),
+                //bloomThreshold, writesToDepthBuffer, readsFromDepthBuffer,
+                //getMaskArray(colorWriteMask));
+    //}
     //#ENDIF
     @Override
     protected void finalize() throws Throwable {
@@ -792,19 +792,19 @@ public class Material {
      * @param diffuseIntensity
      */
     //#IFDEF 'viro_react'
-    public void setDiffuseIntensity(float diffuseIntensity) {
-        mDiffuseIntensity = diffuseIntensity;
-        nativeSetDiffuseIntensity(mNativeRef, diffuseIntensity);
-    }
+    //public void setDiffuseIntensity(float diffuseIntensity) {
+        //mDiffuseIntensity = diffuseIntensity;
+        //nativeSetDiffuseIntensity(mNativeRef, diffuseIntensity);
+    //}
     //#ENDIF
     /**
      * @hide
      * @return
      */
     //#IFDEF 'viro_react'
-    public float getDiffuseIntensity() {
-        return mDiffuseIntensity;
-    }
+    //public float getDiffuseIntensity() {
+        //return mDiffuseIntensity;
+    //}
     //#ENDIF
     /**
      * Set the specular {@link Texture} to use with this Material. The specular Texture defines
@@ -1049,19 +1049,19 @@ public class Material {
      * @param fresnelExponent
      */
     //#IFDEF 'viro_react'
-    public void setFresnelExponent(float fresnelExponent) {
-        mFresnelExponent = fresnelExponent;
-        nativeSetFresnelExponent(mNativeRef, fresnelExponent);
-    }
+    //public void setFresnelExponent(float fresnelExponent) {
+        //mFresnelExponent = fresnelExponent;
+        //nativeSetFresnelExponent(mNativeRef, fresnelExponent);
+    //}
     //#ENDIF
     /**
      * @hide
      * @return
      */
     //#IFDEF 'viro_react'
-    public float getFresnelExponent() {
-        return mFresnelExponent;
-    }
+    //public float getFresnelExponent() {
+        //return mFresnelExponent;
+    //}
     //#ENDIF
     /**
      * Set the {@link LightingModel} to use for this Material. LightingModel defines a formula for
@@ -1299,6 +1299,11 @@ public class Material {
     private native void nativeSetChromaKeyFilteringEnabled(long nativeRef, boolean enabled);
     private native void nativeSetChromaKeyFilteringColor(long nativeRef, int color);
     private native void nativeSetColorWriteMask(long nativeRef, String[] masks);
+    private native void nativeUpdateSubstrate(long nativeRef);
+
+    public void updateSubstrate() {
+        nativeUpdateSubstrate(mNativeRef);
+    }
 
     /**
      * Builder for creating {@link Material} objects.
@@ -1377,10 +1382,10 @@ public class Material {
          * @return This builder.
          */
         //#IFDEF 'viro_react'
-        public MaterialBuilder diffuseIntensity(float diffuseIntensity) {
-            material.setDiffuseIntensity(diffuseIntensity);
-            return this;
-        }
+        //public MaterialBuilder diffuseIntensity(float diffuseIntensity) {
+            //material.setDiffuseIntensity(diffuseIntensity);
+            //return this;
+        //}
         //#ENDIF
         /**
          * Refer to {@link Material#setSpecularTexture(Texture)}.
@@ -1469,10 +1474,10 @@ public class Material {
          * @return This builder.
          */
         //#IFDEF 'viro_react'
-        public MaterialBuilder fresnelExponent(float fresnelExponent) {
-            material.setFresnelExponent(fresnelExponent);
-            return this;
-        }
+        //public MaterialBuilder fresnelExponent(float fresnelExponent) {
+            //material.setFresnelExponent(fresnelExponent);
+            //return this;
+        //}
         //#ENDIF
         /**
          * Refer to {@link Material#setLightingModel(LightingModel)}.

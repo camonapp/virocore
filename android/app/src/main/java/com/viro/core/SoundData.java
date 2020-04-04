@@ -27,53 +27,53 @@ package com.viro.core;
  * @hide
  */
 //#IFDEF 'viro_react'
-public class SoundData {
-    protected final long mNativeRef;
-    protected final long mNativeDelegateRef;
-    private SoundDataInitializeCallback mInitCallback;
+//public class SoundData {
+    //protected final long mNativeRef;
+    //protected final long mNativeDelegateRef;
+    //private SoundDataInitializeCallback mInitCallback;
 
-    public SoundData(String path, SoundDataInitializeCallback callback) {
-        mNativeRef = nativeCreateSoundData(path);
-        mInitCallback = callback;
+    //public SoundData(String path, SoundDataInitializeCallback callback) {
+        //mNativeRef = nativeCreateSoundData(path);
+        //mInitCallback = callback;
 
-        if (mInitCallback != null) {
-            mNativeDelegateRef = nativeSetSoundDataDelegate(mNativeRef);
-        }
-        else {
+        //if (mInitCallback != null) {
+            //mNativeDelegateRef = nativeSetSoundDataDelegate(mNativeRef);
+        //}
+        //else {
             // Don't reformat this block back to } else {, unless you know how to fix the regex in
             // preprocessor.gradle lines 23-27. I tried.
-            mNativeDelegateRef = -1L;
-        }
-    }
+            //mNativeDelegateRef = -1L;
+        //}
+    //}
 
-    public void destroy() {
-        if (mInitCallback != null) {
-            nativeDestroySoundDataDelegate(mNativeDelegateRef);
-            mInitCallback = null;
-        }
-        nativeDestroySoundData(mNativeRef);
-    }
+    //public void destroy() {
+        //if (mInitCallback != null) {
+            //nativeDestroySoundDataDelegate(mNativeDelegateRef);
+            //mInitCallback = null;
+        //}
+        //nativeDestroySoundData(mNativeRef);
+    //}
 
-    private void dataError(String error) {
-        if (mInitCallback != null) {
-            mInitCallback.onDataError(error);
-        }
-    }
+    //private void dataError(String error) {
+        //if (mInitCallback != null) {
+            //mInitCallback.onDataError(error);
+        //}
+    //}
 
-    private void dataIsReady() {
-        if (mInitCallback != null) {
-            mInitCallback.onDataIsReady();
-        }
-    }
+    //private void dataIsReady() {
+        //if (mInitCallback != null) {
+            //mInitCallback.onDataIsReady();
+        //}
+    //}
 
-    private native long nativeCreateSoundData(String path);
-    private native void nativeDestroySoundData(long nativeRef);
-    private native long nativeSetSoundDataDelegate(long nativeRef);
-    private native long nativeDestroySoundDataDelegate(long nativeRef);
+    //private native long nativeCreateSoundData(String path);
+    //private native void nativeDestroySoundData(long nativeRef);
+    //private native long nativeSetSoundDataDelegate(long nativeRef);
+    //private native long nativeDestroySoundDataDelegate(long nativeRef);
 
-    public interface SoundDataInitializeCallback {
-        void onDataError(String error);
-        void onDataIsReady();
-    }
-}
+    //public interface SoundDataInitializeCallback {
+        //void onDataError(String error);
+        //void onDataIsReady();
+    //}
+//}
 //#ENDIF

@@ -413,13 +413,13 @@ public class Controller implements EventDelegate.EventDelegateCallback {
      * @hide
      */
     //#IFDEF 'viro_react'
-    @Override
-    public void onCameraTransformUpdate(float posX, float poxY, float posZ,
-                                        float rotEulerX, float rotEulerY, float rotEulerZ,
-                                        float forwardX, float forwardY, float forwardZ,
-                                        float upX, float upY, float upZ) {
+    //@Override
+    //public void onCameraTransformUpdate(float posX, float poxY, float posZ,
+                                        //float rotEulerX, float rotEulerY, float rotEulerZ,
+                                        //float forwardX, float forwardY, float forwardZ,
+                                        //float upX, float upY, float upZ) {
 
-    }
+    //}
     //#ENDIF
 
     /**

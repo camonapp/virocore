@@ -86,12 +86,12 @@ public class Quad extends Geometry {
      * @hide
      */
     //#IFDEF 'viro_react'
-    public Quad(float width, float height, float u0, float v0, float u1, float v1,
-                Quad oldQuad) {
-        super(false);
-        mNativeRef = nativeCreateQuadFromQuad(width, height, u0, v0, u1, v1,
-                oldQuad.mNativeRef);
-    }
+    //public Quad(float width, float height, float u0, float v0, float u1, float v1,
+                //Quad oldQuad) {
+        //super(false);
+        //mNativeRef = nativeCreateQuadFromQuad(width, height, u0, v0, u1, v1,
+                //oldQuad.mNativeRef);
+    //}
     //#ENDIF
 
     protected void finalize() throws Throwable {
@@ -162,34 +162,34 @@ public class Quad extends Geometry {
      * @param texture
      */
     //#IFDEF 'viro_react'
-    public void setVideoTexture(VideoTexture texture){
-        nativeSetVideoTexture(mNativeRef, texture.mNativeRef);
-    }
+    //public void setVideoTexture(VideoTexture texture){
+        //nativeSetVideoTexture(mNativeRef, texture.mNativeRef);
+    //}
     //#ENDIF
     /**
      * @hide
      * @param texture
      */
     //#IFDEF 'viro_react'
-    public void setImageTexture(Texture texture) {
-        nativeSetImageTexture(mNativeRef, texture.mNativeRef);
-    }
+    //public void setImageTexture(Texture texture) {
+        //nativeSetImageTexture(mNativeRef, texture.mNativeRef);
+    //}
     //#ENDIF
     /**
      * @hide
      * @param material
      */
     //#IFDEF 'viro_react'
-    public void setMaterial(Material material) {
-        super.setMaterials(Arrays.asList(material));
-    }
+    //public void setMaterial(Material material) {
+        //super.setMaterials(Arrays.asList(material));
+    //}
     //#ENDIF
     /**
      * @hide
      */
     //#IFDEF 'viro_react'
-    public void clearMaterial() {
-        nativeClearMaterial(mNativeRef);
-    }
+    //public void clearMaterial() {
+        //nativeClearMaterial(mNativeRef);
+    //}
     //#ENDIF
 }

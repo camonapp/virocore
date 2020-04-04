@@ -56,16 +56,16 @@ public class OmniLight extends Light {
      * @param position
      */
     //#IFDEF 'viro_react'
-    public OmniLight(long color, float intensity, float attenuationStartDistance,
-                     float attenuationEndDistance, Vector position) {
-        mColor = color;
-        mIntensity = intensity;
-        mAttenuationStartDistance = attenuationStartDistance;
-        mAttenuationEndDistance = attenuationEndDistance;
-        mPosition = position;
-        mNativeRef = nativeCreateOmniLight(color, intensity, attenuationStartDistance,
-                attenuationEndDistance, position.x, position.y, position.z);
-    }
+    //public OmniLight(long color, float intensity, float attenuationStartDistance,
+                     //float attenuationEndDistance, Vector position) {
+        //mColor = color;
+        //mIntensity = intensity;
+        //mAttenuationStartDistance = attenuationStartDistance;
+        //mAttenuationEndDistance = attenuationEndDistance;
+        //mPosition = position;
+        //mNativeRef = nativeCreateOmniLight(color, intensity, attenuationStartDistance,
+                //attenuationEndDistance, position.x, position.y, position.z);
+    //}
     //#ENDIF
 
     /**

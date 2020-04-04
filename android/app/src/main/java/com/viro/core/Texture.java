@@ -28,7 +28,7 @@ import android.net.Uri;
 import android.util.Log;
 
 //#IFDEF 'viro_react'
-import com.viro.core.internal.Image;
+//import com.viro.core.internal.Image;
 //#ENDIF
 
 import java.nio.ByteBuffer;
@@ -315,36 +315,36 @@ public class Texture {
      * @hide
      */
     //#IFDEF 'viro_react'
-    public Texture(Image px, Image nx, Image py,
-                   Image ny, Image pz, Image nz) {
-        mNativeRef = nativeCreateCubeTexture(px.mNativeRef, nx.mNativeRef,
-                                             py.mNativeRef, ny.mNativeRef,
-                                             pz.mNativeRef, nz.mNativeRef);
-        mWidth = (int) px.getWidth();
-        mHeight = (int) px.getHeight();
-    }
+    //public Texture(Image px, Image nx, Image py,
+                   //Image ny, Image pz, Image nz) {
+        //mNativeRef = nativeCreateCubeTexture(px.mNativeRef, nx.mNativeRef,
+                                             //py.mNativeRef, ny.mNativeRef,
+                                             //pz.mNativeRef, nz.mNativeRef);
+        //mWidth = (int) px.getWidth();
+        //mHeight = (int) px.getHeight();
+    //}
     //#ENDIF
 
     /**
      * @hide
      */
     //#IFDEF 'viro_react'
-    public Texture(Image image, boolean sRGB, boolean mipmap) {
-        mNativeRef = nativeCreateImageTexture(image.mNativeRef, sRGB, mipmap, null);
-        mWidth = (int) image.getWidth();
-        mHeight = (int) image.getHeight();
-    }
+    //public Texture(Image image, boolean sRGB, boolean mipmap) {
+        //mNativeRef = nativeCreateImageTexture(image.mNativeRef, sRGB, mipmap, null);
+        //mWidth = (int) image.getWidth();
+        //mHeight = (int) image.getHeight();
+    //}
     //#ENDIF
 
     /**
      * @hide
      */
     //#IFDEF 'viro_react'
-    public Texture(Image image, boolean sRGB, boolean mipmap, String stereoMode) {
-        mNativeRef = nativeCreateImageTexture(image.mNativeRef, sRGB, mipmap, stereoMode);
-        mWidth = (int) image.getWidth();
-        mHeight = (int) image.getHeight();
-    }
+    //public Texture(Image image, boolean sRGB, boolean mipmap, String stereoMode) {
+        //mNativeRef = nativeCreateImageTexture(image.mNativeRef, sRGB, mipmap, stereoMode);
+        //mWidth = (int) image.getWidth();
+        //mHeight = (int) image.getHeight();
+    //}
     //#ENDIF
 
     /**
@@ -632,6 +632,10 @@ public class Texture {
         nativeSetMipFilter(mNativeRef, mipFilter.getStringValue());
     }
 
+    public void updateData(ByteBuffer data) {
+        nativeUpdateData(mNativeRef, data);
+    }
+
     /**
      * Get the mip {@link FilterMode} used by this Texture.
      *
@@ -659,6 +663,7 @@ public class Texture {
     private native void nativeSetMagnificationFilter(long nativeRef, String magnificationFilter);
     private native void nativeSetMipFilter(long nativeRef, String mipFilter);
     private native void nativeDestroyTexture(long nativeRef);
+    private native void nativeUpdateData(long nativeRef, ByteBuffer data);
 
     /**
      * Builder for creating {@link Texture} objects with cube map bitmaps (px, nx, pz, nz, py, zy).

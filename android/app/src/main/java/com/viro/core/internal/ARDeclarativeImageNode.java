@@ -32,24 +32,24 @@ import com.viro.core.ARImageTarget;
  * the given ARImageTarget
  */
 //#IFDEF 'viro_react'
-public class ARDeclarativeImageNode extends ARDeclarativeNode {
+//public class ARDeclarativeImageNode extends ARDeclarativeNode {
 
-    private ARImageTarget mARImageTarget;
+    //private ARImageTarget mARImageTarget;
 
-    public ARDeclarativeImageNode() {
-        initWithNativeRef(nativeCreateARImageTargetNode());
-    }
+    //public ARDeclarativeImageNode() {
+        //initWithNativeRef(nativeCreateARImageTargetNode());
+    //}
 
-    public void setARImageTarget(ARImageTarget arImageTarget) {
-        mARImageTarget = arImageTarget;
-        nativeSetARImageTarget(mNativeRef, arImageTarget.getNativeRef());
-    }
+    //public void setARImageTarget(ARImageTarget arImageTarget) {
+        //mARImageTarget = arImageTarget;
+        //nativeSetARImageTarget(mNativeRef, arImageTarget.getNativeRef());
+    //}
 
-    public ARImageTarget getARImageTarget() {
-        return mARImageTarget;
-    }
+    //public ARImageTarget getARImageTarget() {
+        //return mARImageTarget;
+    //}
 
-    private native long nativeCreateARImageTargetNode();
-    private native void nativeSetARImageTarget(long nativeRef, long arImageTargetRef);
-}
+    //private native long nativeCreateARImageTargetNode();
+    //private native void nativeSetARImageTarget(long nativeRef, long arImageTargetRef);
+//}
 //#ENDIF

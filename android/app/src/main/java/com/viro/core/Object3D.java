@@ -235,16 +235,16 @@ public class Object3D extends Node {
      * @hide
      */
     //#IFDEF 'viro_react'
-    public void loadModel(ViroContext viroContext, String modelResource, Type type,
-                          AsyncObject3DListener asyncObjListener,
-                          Map<String, String> resourceNamesToUris) {
-        removeAllChildNodes();
+    //public void loadModel(ViroContext viroContext, String modelResource, Type type,
+                          //AsyncObject3DListener asyncObjListener,
+                          //Map<String, String> resourceNamesToUris) {
+        //removeAllChildNodes();
 
-        long requestID = mActiveRequestID.incrementAndGet();
-        nativeLoadModelFromResources(modelResource, resourceNamesToUris, mNativeRef, viroContext.mNativeRef,
-                                                    type.id, requestID);
-        mAsyncListener = asyncObjListener;
-    }
+        //long requestID = mActiveRequestID.incrementAndGet();
+        //nativeLoadModelFromResources(modelResource, resourceNamesToUris, mNativeRef, viroContext.mNativeRef,
+                                                    //type.id, requestID);
+        //mAsyncListener = asyncObjListener;
+    //}
     //#ENDIF
 
     /**

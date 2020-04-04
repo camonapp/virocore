@@ -238,10 +238,10 @@ public class Camera {
      * @hide
      */
     //#IFDEF 'viro_react'
-    public void setRefNodeToCopyRotation(Node node) {
-        mRefNodeToCopyRotation = node;
-        nativeSetRefNodeToCopyRotation(mNativeRef, mRefNodeToCopyRotation.getNativeRef());
-    }
+    //public void setRefNodeToCopyRotation(Node node) {
+        //mRefNodeToCopyRotation = node;
+        //nativeSetRefNodeToCopyRotation(mNativeRef, mRefNodeToCopyRotation.getNativeRef());
+    //}
     //#ENDIF
 
     /**

@@ -310,3 +310,8 @@ void VROTexture::setWrapT(VROWrapMode wrapMode) {
         _substrates[i]->updateWrapMode(_wrapS, wrapMode);
     }
 }
+
+void VROTexture::updateData(std::vector<std::shared_ptr<VROData>> &data) {
+    _data = data;
+    _substrates.clear();
+}
