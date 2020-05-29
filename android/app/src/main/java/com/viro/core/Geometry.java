@@ -190,6 +190,10 @@ public class Geometry {
         nativeSetTextureCoordinates(mNativeRef, texcoordData);
     }
 
+    public float[] getTextureCoordinates() {
+        return nativeGetTextureCoordinates(mNativeRef);
+    }
+
     /**
      * Set the normal vectors used by this Geometry. Normal vectors define the orientation of the
      * surfaces of this Geometry, which determines how each surface responds to light and other
@@ -236,6 +240,7 @@ public class Geometry {
     private native void nativeSetVertices(long nativeRef, float[] vertices);
     private native void nativeSetNormals(long nativeRef, float[] vertices);
     private native void nativeSetTextureCoordinates(long nativeRef, float[] vertices);
+    private native float[] nativeGetTextureCoordinates(long nativeRef);
 
     /**
      * Retrieve a builder for creating {@link Geometry} objects.

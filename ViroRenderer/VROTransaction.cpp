@@ -253,6 +253,7 @@ void VROTransaction::update() {
                 }
                 transaction->_startTimeSeconds = VROTimeCurrentSeconds();
                 transaction->_currentSpeedModulatedTime = 0;
+                transaction->_delayTimeSeconds = 0;
                 transaction->processAnimations(0);
             } else {
                 transaction->onTermination();

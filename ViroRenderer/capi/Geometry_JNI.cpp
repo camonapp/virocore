@@ -197,4 +197,28 @@ VRO_METHOD(void, nativeSetTextureCoordinates)(VRO_ARGS
     VRO_FLOAT_ARRAY_RELEASE_ELEMENTS(texCoords_j, texcoords_c);
 }
 
+VRO_METHOD(VRO_FLOAT_ARRAY, nativeGetTextureCoordinates)(VRO_ARGS
+                                              VRO_REF(VROGeometry) nativeRef) {
+    std::weak_ptr<VROGeometry> geo_w = VRO_REF_GET(VROGeometry, nativeRef);
+    {
+        std::shared_ptr<VROGeometry> geo = geo_w.lock();
+        std::shared_ptr<VROGeometrySource> texcoord = geo->getGeometrySourcesForSemantic(VROGeometrySourceSemantic::Texcoord).front();
+        std::shared_ptr<VROData> data = texcoord->getData();
+        void* realData = data->getData();
+        float* tmp = (float*)realData;
+        int realDataLength = data->getDataLength();
+
+        int arrSize = 6;
+        VRO_FLOAT tempArr[arrSize];
+        for (int i = 0; i < realDataLength; i++) {
+            tempArr[i] = *(tmp++);
+        }
+        VRO_FLOAT_ARRAY returnArray = VRO_NEW_FLOAT_ARRAY(arrSize);
+        VRO_FLOAT_ARRAY_SET(returnArray, 0, arrSize, tempArr);
+        return returnArray;
+    }
+
+    return nullptr;
+}
+
 }
