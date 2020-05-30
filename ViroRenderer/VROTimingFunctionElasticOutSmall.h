@@ -1,5 +1,5 @@
 //
-//  VROTimingFunction.h
+//  VROTimingFunctionLinear.h
 //  ViroRenderer
 //
 //  Created by Raj Advani on 10/22/15.
@@ -24,44 +24,22 @@
 //  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 //  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#ifndef VROTIMINGFUNCTION_H_
-#define VROTIMINGFUNCTION_H_
+#ifndef __VROElasticOutSmallTimingFunction__
+#define __VROElasticOutSmallTimingFunction__
 
-#include <memory>
+#include "VROTimingFunction.h"
 
-enum class VROTimingFunctionType {
-    Linear,
-    EaseIn,
-    EaseOut,
-    EaseInEaseOut,
-    Bounce,
-    PowerDecel,
-
-    CubicIn,
-    CubicOut,
-    CubicInOut,
-    CubicOutIn,
-    CubicBackIn,
-    CubicBackOut,
-    CuarticBackIn,
-    CuarticBackOut,
-    ElasticInSmall,
-    ElasticOutSmall,
-    ElasticInBig,
-    ElasticOutBig
-};
-
-class VROTimingFunction {
-    
+class VROTimingFunctionElasticOutSmall : public VROTimingFunction {
 public:
-    
-    static std::unique_ptr<VROTimingFunction> forType(VROTimingFunctionType type);
 
-    VROTimingFunction() {}
-    virtual ~VROTimingFunction() {}
+    VROTimingFunctionElasticOutSmall() {}
+    virtual ~VROTimingFunctionElasticOutSmall() {}
 
-    virtual float getT(float t, float from, float to) = 0;
-    
+    float getT(float t, float from, float to) {
+        float ts = t * t;
+        float tc = ts * t;
+        return from + (33 * tc * ts - 106 * ts * ts + 126 * tc - 67 * ts + 15 * t) * (to - from);
+    }
 };
 
-#endif /* VROTIMINGFUNCTION_H_ */
+#endif

@@ -35,7 +35,7 @@ public:
     VROTimingFunctionBounce() {}
     virtual ~VROTimingFunctionBounce() {}
 
-    float getT(float t) {
+    float getT(float t, float from, float to) {
         if (t < 0.5) {
             return (float) (t / 0.45);
         }

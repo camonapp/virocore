@@ -25,6 +25,7 @@
 #include "VROPlatformUtil.h"
 #include "VROStringUtil.h"
 #include "VROLog.h"
+#include "../VROTimingFunction.h"
 
 #if VRO_PLATFORM_ANDROID
 #define VRO_METHOD(return_type, method_name) \
@@ -117,6 +118,30 @@ VRO_METHOD(void, nativeSetTimingFunction)(VRO_ARGS_STATIC
         timing = VROTimingFunctionType::EaseInEaseOut;
     } else if (VROStringUtil::strcmpinsensitive(timing_s, "bounce")) {
         timing = VROTimingFunctionType::Bounce;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "cubicin")) {
+        timing = VROTimingFunctionType::CubicIn;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "cubicout")) {
+        timing = VROTimingFunctionType::CubicOut;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "cubicinout")) {
+        timing = VROTimingFunctionType::CubicInOut;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "cubicoutin")) {
+        timing = VROTimingFunctionType::CubicOutIn;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "cubicbackin")) {
+        timing = VROTimingFunctionType::CubicBackIn;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "cubicbackout")) {
+        timing = VROTimingFunctionType::CubicBackOut;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "cuarticbackin")) {
+        timing = VROTimingFunctionType::CuarticBackIn;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "cuarticbackout")) {
+        timing = VROTimingFunctionType::CuarticBackOut;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "elasticinsmall")) {
+        timing = VROTimingFunctionType::ElasticInSmall;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "elasticoutsmall")) {
+        timing = VROTimingFunctionType::ElasticOutSmall;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "elasticinbig")) {
+        timing = VROTimingFunctionType::ElasticInBig;
+    } else if (VROStringUtil::strcmpinsensitive(timing_s, "elasticoutbig")) {
+        timing = VROTimingFunctionType::ElasticOutBig;
     }
 
     VROPlatformDispatchAsyncRenderer([timing] {

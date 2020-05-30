@@ -51,7 +51,20 @@ public enum AnimationTimingFunction {
      * The animation will begin quickly and <i>overshoot</i> its final position before settling into
      * its final resting place
      */
-    Bounce("bounce");
+    Bounce("bounce"),
+
+    CubicIn("cubicin"),
+    CubicOut("cubicout"),
+    CubicInOut("cubicinout"),
+    CubicOutIn("cubicoutin"),
+    CubicBackIn("cubicbackin"),
+    CubicBackOut("cubicbackout"),
+    CuarticBackIn("cuarticbackin"),
+    CuarticBackOut("cuarticbackout"),
+    ElasticInSmall("elasticinsmall"),
+    ElasticOutSmall("elasticoutsmall"),
+    ElasticInBig("elasticinbig"),
+    ElasticOutBig("elasticoutbig");
 
     private String mStringValue;
 

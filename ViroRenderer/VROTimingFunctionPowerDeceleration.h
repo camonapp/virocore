@@ -57,7 +57,7 @@ public:
     VROTimingFunctionPowerDeceleration() {}
     virtual ~VROTimingFunctionPowerDeceleration() {}
 
-    float getT(float t) {
+    float getT(float t, float from, float to) {
         passert (t >= 0 && t <= 1);
         return (float) (1 - pow(1 - t, kPowerFunctionDecelerationExponent));
     }

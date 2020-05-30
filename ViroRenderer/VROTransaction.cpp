@@ -242,25 +242,46 @@ void VROTransaction::update() {
             continue;
         }
 
-        float duration = transaction->_pingPong ? transaction->_durationSeconds * 2 : transaction->_durationSeconds;
-        float percent = (passedTimeInSeconds - transaction->_delayTimeSeconds) / duration;
+        float percent = (passedTimeInSeconds - transaction->_delayTimeSeconds) / transaction->_durationSeconds;
+        bool resetAnimation = false;
+        bool animationFinishCallback = false;
         if (isinf(percent) || percent > 1.0 - kEpsilon) {
-
-            // if _loop set, reset _t to 0 (done inside processAnimations(percent)
-            if (transaction->_loop) {
-                if (transaction -> _finishCallback) {
-                    transaction -> _finishCallback(false);
+            if (transaction->_pingPong) {
+                if (transaction->_isPing) {
+                    resetAnimation = true;
+                    transaction->_isPing = false;
+                } else {
+                    if (transaction->_loop) {
+                        animationFinishCallback = true;
+                        resetAnimation = true;
+                        transaction->_isPing = true;
+                    } else {
+                        transaction->onTermination();
+                    }
                 }
-                transaction->_startTimeSeconds = VROTimeCurrentSeconds();
-                transaction->_currentSpeedModulatedTime = 0;
-                transaction->_delayTimeSeconds = 0;
-                transaction->processAnimations(0);
             } else {
-                transaction->onTermination();
+                if (transaction->_loop) {
+                    animationFinishCallback = true;
+                    resetAnimation = true;
+                } else {
+                    transaction->onTermination();
+                }
             }
-        }
-        else {
+        } else {
             transaction->processAnimations(percent);
+        }
+
+        if (resetAnimation) {
+            transaction->_startTimeSeconds = VROTimeCurrentSeconds();
+            transaction->_currentSpeedModulatedTime = 0;
+            transaction->_delayTimeSeconds = 0;
+            transaction->processAnimations(0);
+        }
+
+        if (animationFinishCallback) {
+            if (transaction->_finishCallback) {
+                transaction->_finishCallback(false);
+            }
         }
     }
 
@@ -291,13 +312,8 @@ VROTransaction::VROTransaction() :
 }
 
 void VROTransaction::processAnimations(float t) {
-    if (_pingPong) {
-        _isPing = t <= 0.5f;
-        t = _isPing ? t / 0.5f : (t - 0.5f) / 0.5f;
-    }
-
     _t = t;
-    float transformedT = _timingFunction->getT(t);
+    float transformedT = _timingFunction->getT(t, 0, 1);
 
     for (std::shared_ptr<VROAnimation> animation : _animations) {
         animation->processAnimationFrame(transformedT, _isPing);

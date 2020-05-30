@@ -35,8 +35,8 @@ public:
     VROTimingFunctionLinear() {}
     virtual ~VROTimingFunctionLinear() {}
 
-    float getT(float t) {
-        return t;
+    float getT(float t, float from, float to) {
+        return from + (t) * (to - from);
     }
 };
 

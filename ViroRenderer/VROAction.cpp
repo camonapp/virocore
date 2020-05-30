@@ -103,7 +103,7 @@ void VROActionTimed::execute(VRONode *node) {
     VROAction::preExecute(node);
     
     float t = VROMathClamp((VROTimeCurrentSeconds() - _startTime) / _duration, 0.0, 1.0);
-    _action(node, _timingFunction->getT(t));
+    _action(node, _timingFunction->getT(t, 0, 1));
     
     VROAction::postExecute(node);
 }

@@ -78,7 +78,43 @@ VROTimingFunctionType VROAnimationGroup::parseTimingFunction(std::string &name) 
     else if (VROStringUtil::strcmpinsensitive(name, "PowerDecel")) {
         return VROTimingFunctionType::PowerDecel;
     }
-    
+    else if (VROStringUtil::strcmpinsensitive(name, "CubicIn")) {
+        return VROTimingFunctionType::CubicIn;
+    }
+    else if (VROStringUtil::strcmpinsensitive(name, "CubicOut")) {
+        return VROTimingFunctionType::CubicOut;
+    }
+    else if (VROStringUtil::strcmpinsensitive(name, "CubicInOut")) {
+        return VROTimingFunctionType::CubicInOut;
+    }
+    else if (VROStringUtil::strcmpinsensitive(name, "CubicOutIn")) {
+        return VROTimingFunctionType::CubicOutIn;
+    }
+    else if (VROStringUtil::strcmpinsensitive(name, "CubicBackIn")) {
+        return VROTimingFunctionType::CubicBackIn;
+    }
+    else if (VROStringUtil::strcmpinsensitive(name, "CubicBackOut")) {
+        return VROTimingFunctionType::CubicBackOut;
+    }
+    else if (VROStringUtil::strcmpinsensitive(name, "CuarticBackIn")) {
+        return VROTimingFunctionType::CuarticBackIn;
+    }
+    else if (VROStringUtil::strcmpinsensitive(name, "CuarticBackOut")) {
+        return VROTimingFunctionType::CuarticBackOut;
+    }
+    else if (VROStringUtil::strcmpinsensitive(name, "ElasticInSmall")) {
+        return VROTimingFunctionType::ElasticInSmall;
+    }
+    else if (VROStringUtil::strcmpinsensitive(name, "ElasticOutSmall")) {
+        return VROTimingFunctionType::ElasticOutSmall;
+    }
+    else if (VROStringUtil::strcmpinsensitive(name, "ElasticInBig")) {
+        return VROTimingFunctionType::ElasticInBig;
+    }
+    else if (VROStringUtil::strcmpinsensitive(name, "ElasticOutBig")) {
+        return VROTimingFunctionType::ElasticOutBig;
+    }
+
     //return default if nothing else matches
     return VROTimingFunctionType::Linear;
 }

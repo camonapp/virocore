@@ -51,7 +51,7 @@ public:
         }
     }
 
-    float getT(float t) {
+    float getT(float t, float from, float to) {
         float *begin = &xLookup[0];
         float *end = &xLookup[kTunedBezierLookupSteps];
 

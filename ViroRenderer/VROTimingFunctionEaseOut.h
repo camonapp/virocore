@@ -36,7 +36,7 @@ public:
     VROTimingFunctionEaseOut() {}
     virtual ~VROTimingFunctionEaseOut() {}
 
-    float getT(float t) {
+    float getT(float t, float from, float to) {
         if (t <= 0.5f){
             return t;
         }

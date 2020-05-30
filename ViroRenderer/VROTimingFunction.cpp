@@ -31,6 +31,19 @@
 #include "VROTimingFunctionBounce.h"
 #include "VROTimingFunctionPowerDeceleration.h"
 #include "VROTimingFunctionLinear.h"
+#include "VROTimingFunctionCubicIn.h"
+#include "VROTimingFunctionCubicOut.h"
+#include "VROTimingFunctionCubicInOut.h"
+#include "VROTimingFunctionCubicOutIn.h"
+#include "VROTimingFunctionCubicBackIn.h"
+#include "VROTimingFunctionCubicBackOut.h"
+#include "VROTimingFunctionCuarticBackIn.h"
+#include "VROTimingFunctionCuarticBackOut.h"
+#include "VROTimingFunctionElasticInSmall.h"
+#include "VROTimingFunctionElasticInBig.h"
+#include "VROTimingFunctionElasticOutBig.h"
+#include "VROTimingFunctionElasticOutSmall.h"
+
 #include "VROLog.h"
 
 std::unique_ptr<VROTimingFunction> VROTimingFunction::forType(VROTimingFunctionType type) {
@@ -47,6 +60,30 @@ std::unique_ptr<VROTimingFunction> VROTimingFunction::forType(VROTimingFunctionT
             return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionBounce());
         case VROTimingFunctionType::PowerDecel:
             return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionPowerDeceleration());
+        case VROTimingFunctionType::CubicIn:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionCubicIn());
+        case VROTimingFunctionType::CubicOut:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionCubicOut());
+        case VROTimingFunctionType::CubicInOut:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionCubicInOut());
+        case VROTimingFunctionType::CubicOutIn:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionCubicOutIn());
+        case VROTimingFunctionType::CubicBackIn:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionCubicBackIn());
+        case VROTimingFunctionType::CubicBackOut:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionCubicBackOut());
+        case VROTimingFunctionType::CuarticBackIn:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionCuarticBackIn());
+        case VROTimingFunctionType::CuarticBackOut:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionCuarticBackOut());
+        case VROTimingFunctionType::ElasticInSmall:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionElasticInSmall());
+        case VROTimingFunctionType::ElasticOutSmall:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionElasticOutSmall());
+        case VROTimingFunctionType::ElasticInBig:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionElasticInBig());
+        case VROTimingFunctionType::ElasticOutBig:
+            return std::unique_ptr<VROTimingFunction>(new VROTimingFunctionElasticOutBig());
         default:
             pabort();
     }
