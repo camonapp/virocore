@@ -500,6 +500,10 @@ public class Node implements EventDelegate.EventDelegateCallback {
         updateAllUmbrellaBounds();
     }
 
+    public void setPositionForAnimation(Vector position) {
+        nativeSetPosition(mNativeRef, position.x, position.y, position.z);
+    }
+
     /**
      * Get the real-time <i>local</i> position of this Node. The local position is the Node's
      * location in the coordinate system of its parent. The position returned is real-time in that
@@ -530,6 +534,10 @@ public class Node implements EventDelegate.EventDelegateCallback {
         updateAllUmbrellaBounds();
     }
 
+    public void setRotationForAnimation(Vector rotation) {
+        nativeSetRotationEuler(mNativeRef, rotation.x, rotation.y, rotation.z);
+    }
+
     /**
      * Set the orientation of this Node, expressed as a {@link Quaternion}.
      *
@@ -539,6 +547,10 @@ public class Node implements EventDelegate.EventDelegateCallback {
         nativeSetRotationQuaternion(mNativeRef, rotation.x, rotation.y, rotation.z, rotation.w);
         updateWorldTransforms();
         updateAllUmbrellaBounds();
+    }
+
+    public void setRotationForAnimation(Quaternion rotation) {
+        nativeSetRotationQuaternion(mNativeRef, rotation.x, rotation.y, rotation.z, rotation.w);
     }
 
     /**
@@ -592,6 +604,10 @@ public class Node implements EventDelegate.EventDelegateCallback {
         nativeSetScale(mNativeRef, scale.x, scale.y, scale.z);
         updateWorldTransforms();
         updateAllUmbrellaBounds();
+    }
+
+    public void setScaleForAnimation(Vector scale) {
+        nativeSetScale(mNativeRef, scale.x, scale.y, scale.z);
     }
 
     /**
